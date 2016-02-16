@@ -16,4 +16,5 @@ ln -sfv "$scripts/.gitconfig" ~
 ln -sfv "$scripts/.githelpers" ~
 
 ln -sfv "$scripts/prompts/colors" ~/.shell.d/prompt
+ln -sfv "$scripts/.hgrc" ~
 

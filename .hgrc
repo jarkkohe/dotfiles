@@ -1,0 +1,19 @@
+[extensions]
+color =
+pager =
+record =
+shelve =
+ 
+ 
+[pager]
+pager = LESS='FRSXQ' less
+quiet = True
+attend = outgoing,incoming,diff,status,log,qdiff,blame,annotate,pdiff
+ 
+ 
+[color]
+diff.trailingwhitespace = none
+ 
+ 
+[diff]
+git = 1
