@@ -10,9 +10,10 @@ ln -sfv "$scripts/.bashrc" ~
 ln -sfv "$scripts/.bash_profile" ~
 ln -sfv "$scripts/.editorconfig" ~
 ln -sfv "$scripts/.tmux.conf" ~
-ln -sfv "$scripts/.input.rc" ~
-
+ln -sfv "$scripts/.inputrc" ~
 
 ln -sfv "$scripts/.gitconfig" ~
 ln -sfv "$scripts/.githelpers" ~
+
+ln -sfv "$scripts/prompts/colors" ~/.shell.d/prompt
 
