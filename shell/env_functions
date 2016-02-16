@@ -1,0 +1,76 @@
+# original from https://bitbucket.org/flowblok/shell-startup/
+
+indirect_expand () {
+    env |sed -n "s/^$1=//p"
+}
+
+pathremove () {
+    local IFS=':'
+    local newpath
+    local dir
+    local var=${2:-PATH}
+    # Bash has ${!var}, but this is not portable.
+    for dir in `indirect_expand "$var"`; do
+        IFS=''
+        if [ "$dir" != "$1" ]; then
+            newpath=$newpath:$dir
+        fi
+    done
+    export $var=${newpath#:}
+}
+
+pathprepend () {
+    # if the path is already in the variable,
+    # remove it so we can move it to the front
+    pathremove "$1" "$2"
+    #[ -d "${1}" ] || return
+    local var="${2:-PATH}"
+    local value=`indirect_expand "$var"`
+    export ${var}="${1}${value:+:${value}}"
+}
+
+pathappend () {
+    pathremove "${1}" "${2}"
+    #[ -d "${1}" ] || return
+    local var=${2:-PATH}
+    local value=`indirect_expand "$var"`
+    export $var="${value:+${value}:}${1}"
+}
+
+ssource () {
+    if [ -r "$1" ]; then
+        . "$1"
+    fi
+}
+
+silent_which () {
+    which "$1" &>/dev/null
+}
+
+coalesce () {
+    while [ "$#" -gt 0 ]; do
+        if [ "$1" ]; then
+            echo "$1";
+            return 0
+        fi
+        shift
+    done
+    return 1
+}
+
+coalesce_which () {
+    args=()
+
+    while  [ "$#" -gt 0 ]; do
+        if [ "$1" ]; then
+            args+=("$(silent_which "$1")")
+        fi
+        shift
+    done
+
+    if [ "${#args[@]}" = 0 ]; then
+        return 1
+    fi
+
+    echo "$(coalesce "${args[@]}")"
+}

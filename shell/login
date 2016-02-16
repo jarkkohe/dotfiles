@@ -1,0 +1,24 @@
+#!/bin/sh
+
+export PAGER=less
+
+if silent_which vim; then
+    export EDITOR=vim
+else
+    editor="$(coalesce_which vi nano pico)"
+    if [ "$editor" ]; then
+        export EDITOR="$editor"
+        echo "shell/login: using fallback editor: $EDITOR" >&2
+    else
+        echo "shell/login: no fallback editor" >&2
+    fi
+fi
+
+export VISUAL="$EDITOR"
+export TIME_STYLE=long-iso
+
+pathprepend "~/local/bin" PATH
+pathprepend "~/local/lib" LD_LIBRARY_PATH
+
+pathremove . PATH
+pathremove "" PATH

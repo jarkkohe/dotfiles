@@ -1,0 +1,15 @@
+# run this for interactive
+export ENV="$DOTFILES/sh/interactive"
+
+# bash: run this for non-interactive
+export BASH_ENV="$DOTFILES/bash/env"
+
+. "$DOTFILES/shell/env_functions"
+
+umask 0077
+
+ssource "~/.shell/env_local"
+
+for i in ~/.shell.d/*; do
+    ssource "$i"
+done

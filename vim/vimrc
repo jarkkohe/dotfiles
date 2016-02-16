@@ -1,0 +1,47 @@
+if has('vim_starting')
+	set nocompatible               " Be iMproved
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+NeoBundle 'godlygeek/csapprox'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'editorconfig/editorconfig-vim'
+
+NeoBundle 'wting/rust.vim'
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+set listchars=tab:»\ ,trail:$
+set list
+
+set modeline
+set number
+syntax enable
+set background=dark
+
+let g:CSApprox_verbose_level = 0
+
+try
+    colorscheme desert
+catch
+endtry
+
+" allow jsx in every .js
+let g:jsx_ext_required = 0
