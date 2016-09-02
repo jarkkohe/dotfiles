@@ -3,6 +3,9 @@ color =
 pager =
 record =
 shelve =
+rebase =
+purge = 
+mq =
  
  
 [pager]
