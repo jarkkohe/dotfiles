@@ -14,5 +14,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias lsth="ls -t | head"
+alias vi="vim"
 
 export LESS="-FXRS"
