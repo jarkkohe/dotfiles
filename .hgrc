@@ -20,3 +20,5 @@ diff.trailingwhitespace = none
  
 [diff]
 git = 1
+[ui]
+editor = vim
