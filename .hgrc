@@ -4,21 +4,23 @@ pager =
 record =
 shelve =
 rebase =
-purge = 
+purge =
 mq =
- 
- 
+
+
 [pager]
 pager = LESS='FRSXQ' less
 quiet = True
 attend = outgoing,incoming,diff,status,log,qdiff,blame,annotate,pdiff
- 
- 
+
+
 [color]
 diff.trailingwhitespace = none
- 
- 
+
+
 [diff]
 git = 1
+
 [ui]
 editor = vim
+merge = internal:merge
